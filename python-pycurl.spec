@@ -1,4 +1,3 @@
-
 %include	/usr/lib/rpm/macros.python
 %define 	module pycurl
 Summary:	free and easy-to-use client-side URL transfer library
@@ -11,9 +10,9 @@ Group:		Libraries/Python
 Source0:	http://%{module}.sourceforge.net/download/%{module}-%{version}.tar.gz
 # Source0-md5:	0245b6962b9104e00079e166dd74cd53
 URL:		http://pycurl.sourceforge.net/
+BuildRequires:	curl-devel >= 7.10.3
 BuildRequires:	rpm-pythonprov
 Requires:	python
-BuildRequires:	curl-devel >= 7.10.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -39,7 +38,9 @@ przesy³ania plików, tunelowanie proxy i wiele innych.
 %install
 rm -rf $RPM_BUILD_ROOT
 
-python setup.py install --optimize=2 --root=$RPM_BUILD_ROOT
+python setup.py install \
+	--root=$RPM_BUILD_ROOT \
+	--optimize=2
 
 %clean
 rm -rf $RPM_BUILD_ROOT
