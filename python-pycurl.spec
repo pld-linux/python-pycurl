@@ -84,6 +84,7 @@ rm -rf $RPM_BUILD_ROOT
 %files doc
 %defattr(644,root,root,755)
 %doc doc/*
+%{_datadir}/doc/*
 
 %files examples
 %defattr(644,root,root,755)
