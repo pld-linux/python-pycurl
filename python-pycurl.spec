@@ -2,14 +2,15 @@
 Summary:	Free and easy-to-use client-side URL transfer library
 Summary(pl):	£atwa w u¿yciu biblioteka obs³ugi URL od strony klienta
 Name:		python-%{module}
-Version:	7.12
+Version:	7.12.1
 Release:	1
 License:	LGPL
 Group:		Libraries/Python
 Source0:	http://pycurl.sourceforge.net/download/%{module}-%{version}.tar.gz
-# Source0-md5:	379b050e9fbac136a42b855981a7b053
+# Source0-md5:	931821a211b48c5836acc8dd744febcb
 URL:		http://pycurl.sourceforge.net/
 BuildRequires:	curl-devel >= 7.11.2
+BuildRequires:	libidn-devel
 BuildRequires:	rpm-pythonprov
 Requires:	python
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
