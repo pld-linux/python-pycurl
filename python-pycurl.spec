@@ -24,7 +24,7 @@ transfer resume, http proxy tunneling and more!
 
 %description -l pl
 pycurl jest interfejsem jêzyka Python do biblioteki libcurl -
-wolnodostêpnej i ³atwej w u¿yciu biblioteki operacji na URLach od
+wolnodostêpnej i ³atwej w u¿yciu biblioteki operacji na URL-ach od
 strony klienta, obs³uguj±cej FTP, FTPS, HTTP, HTTPS, GOPHER, TELNET,
 DICT, FILE i LDAP. libcurl obs³uguje tak¿e certyfikaty HTTPS, HTTP
 POST, HTTP PUT, uploady FTP, kerberos, upload plików przez HTTP oparty
