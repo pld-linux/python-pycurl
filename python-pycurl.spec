@@ -9,6 +9,7 @@ Release:	0.1
 License:	LGPL
 Group:		Libraries/Python
 Source0:	http://%{module}.sourceforge.net/download/%{module}-%{version}.tar.gz
+# Source0-md5:	ea14b6ecaf23e3a40aa63a56007c4d28
 URL:		http://pycurl.sourceforge.net/
 BuildRequires:	rpm-pythonprov
 Requires:	python
