@@ -10,6 +10,9 @@ Source0:	http://pycurl.sourceforge.net/download/%{module}-%{version}.tar.gz
 # Source0-md5:	9dda4d883b2a9cd2e819296f9b91c555
 URL:		http://pycurl.sourceforge.net/
 BuildRequires:	curl-devel >= 7.13.1
+BuildRequires:	python
+BuildRequires:	python-devel
+BuildRequires:	python-modules
 Requires:	curl >= 7.13.1
 Requires:	python
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
