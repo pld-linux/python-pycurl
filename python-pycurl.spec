@@ -1,5 +1,5 @@
 %include	/usr/lib/rpm/macros.python
-%define 	module pycurl
+%define 	module	pycurl
 Summary:	Free and easy-to-use client-side URL transfer library
 Summary(pl):	£atwa w u¿yciu biblioteka obs³ugi URL od strony klienta
 Name:		python-%{module}
