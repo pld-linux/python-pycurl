@@ -4,7 +4,7 @@ Summary:	Free and easy-to-use client-side URL transfer library
 Summary(pl):	£atwa w u¿yciu biblioteka obs³ugi URL od strony klienta
 Name:		python-%{module}
 Version:	7.10.6
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Libraries/Python
 Source0:	http://%{module}.sourceforge.net/download/%{module}-%{version}.tar.gz
