@@ -20,7 +20,7 @@ client-side URL transfer library, supporting FTP, FTPS, HTTP, HTTPS,
 GOPHER, TELNET, DICT, FILE and LDAP. libcurl supports HTTPS
 certificates, HTTP POST, HTTP PUT, FTP uploading, kerberos, HTTP form
 based upload, proxies, cookies, user+password authentication, file
-transfer resume, http proxy tunneling and more!
+transfer resume, HTTP proxy tunneling and more!
 
 %description -l pl
 pycurl jest interfejsem jêzyka Python do biblioteki libcurl -
