@@ -60,7 +60,6 @@ Modu³ zawieraj±cy przyk³adowe programy do modu³u Pythona pycurl.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT{%{py_sitedir},%{_examplesdir}/%{name}-%{version}}
 
 python setup.py install \
@@ -84,7 +83,6 @@ rm -rf $RPM_BUILD_ROOT
 %files doc
 %defattr(644,root,root,755)
 %doc doc/*
-%{_datadir}/doc/*
 
 %files examples
 %defattr(644,root,root,755)
