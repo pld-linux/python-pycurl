@@ -13,6 +13,7 @@ BuildRequires:	curl-devel >= 7.15.5
 BuildRequires:	python
 BuildRequires:	python-devel
 BuildRequires:	python-modules
+BuildRequires:	rpm-pythonprov
 Requires:	curl-libs >= 7.15.5
 Requires:	python
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
