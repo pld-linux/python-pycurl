@@ -1,0 +1,61 @@
+diff -urN pycurl-7.15.5.1.org/src/pycurl.c pycurl-7.15.5.1/src/pycurl.c
+--- pycurl-7.15.5.1.org/src/pycurl.c	2006-08-11 12:37:19.000000000 +0200
++++ pycurl-7.15.5.1/src/pycurl.c	2006-12-22 00:49:04.987607250 +0100
+@@ -1475,9 +1475,15 @@
+         case CURLOPT_URL:
+         case CURLOPT_USERAGENT:
+         case CURLOPT_USERPWD:
++#if CURLOPT_SOURCE_HOST != 0
+         case CURLOPT_SOURCE_HOST:
++#endif
++#if CURLOPT_SOURCE_USERPWD != 0
+         case CURLOPT_SOURCE_USERPWD:
++#endif
++#if CURLOPT_SOURCE_PATH != 0
+         case CURLOPT_SOURCE_PATH:
++#endif
+         case CURLOPT_FTP_ALTERNATIVE_TO_USER:
+ /* FIXME: check if more of these options allow binary data */
+             str = PyString_AsString_NoNUL(obj);
+@@ -1646,12 +1652,16 @@
+         case CURLOPT_PREQUOTE:
+             old_slist = &self->prequote;
+             break;
++#if CURLOPT_SOURCE_PREQUOTE != 0
+         case CURLOPT_SOURCE_PREQUOTE:
+             old_slist = &self->source_prequote;
+             break;
++#endif
++#if CURLOPT_SOURCE_POSTQUOTE != 0
+         case CURLOPT_SOURCE_POSTQUOTE:
+             old_slist = &self->source_postquote;
+             break;
++#endif
+         case CURLOPT_HTTPPOST:
+             break;
+         default:
+@@ -3180,14 +3190,24 @@
+     insint_c(d, "FTP_SSL", CURLOPT_FTP_SSL);
+     insint_c(d, "POSTFIELDSIZE_LARGE", CURLOPT_POSTFIELDSIZE_LARGE);
+     insint_c(d, "TCP_NODELAY", CURLOPT_TCP_NODELAY);
++#if CURLOPT_SOURCE_USERPWD != 0
+     insint_c(d, "SOURCE_USERPWD", CURLOPT_SOURCE_USERPWD);
++#endif
++#if CURLOPT_SOURCE_PREQUOTE != 0
+     insint_c(d, "SOURCE_PREQUOTE", CURLOPT_SOURCE_PREQUOTE);
++#endif
++#if CURLOPT_SOURCE_POSTQUOTE != 0
+     insint_c(d, "SOURCE_POSTQUOTE", CURLOPT_SOURCE_POSTQUOTE);
++#endif
+     insint_c(d, "FTPSSLAUTH", CURLOPT_FTPSSLAUTH);
+     insint_c(d, "IOCTLFUNCTION", CURLOPT_IOCTLFUNCTION);
+     insint_c(d, "IOCTLDATA", CURLOPT_IOCTLDATA);
++#if CURLOPT_SOURCE_URL != 0
+     insint_c(d, "SOURCE_URL", CURLOPT_SOURCE_URL);
++#endif
++#if CURLOPT_SOURCE_QUOTE != 0
+     insint_c(d, "SOURCE_QUOTE", CURLOPT_SOURCE_QUOTE);
++#endif
+     insint_c(d, "FTP_ACCOUNT", CURLOPT_FTP_ACCOUNT);
+     insint_c(d, "IGNORE_CONTENT_LENGTH", CURLOPT_IGNORE_CONTENT_LENGTH);
+     insint_c(d, "COOKIELIST", CURLOPT_COOKIELIST);
