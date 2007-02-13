@@ -1,6 +1,6 @@
 %define 	module	pycurl
 Summary:	Free and easy-to-use client-side URL transfer library
-Summary(pl.UTF-8):   Łatwa w użyciu biblioteka obsługi URL od strony klienta
+Summary(pl.UTF-8):	Łatwa w użyciu biblioteka obsługi URL od strony klienta
 Name:		python-%{module}
 Version:	7.15.5.1
 Release:	2
@@ -38,7 +38,7 @@ przesyłania plików, tunelowanie proxy i wiele innych.
 
 %package doc
 Summary:	Documentation for pycurl Python module
-Summary(pl.UTF-8):   Dokumentacja do modułu Pythona pycurl
+Summary(pl.UTF-8):	Dokumentacja do modułu Pythona pycurl
 Group:		Libraries/Python
 Requires:	%{name} = %{version}-%{release}
 
@@ -50,7 +50,7 @@ Moduł zawierający dokumentację dla modułu Pythona pucurl.
 
 %package examples
 Summary:	Examples for pycurl Python module
-Summary(pl.UTF-8):   Przykładowe programy do modułu Pythona pycurl
+Summary(pl.UTF-8):	Przykładowe programy do modułu Pythona pycurl
 Group:		Libraries/Python
 Requires:	%{name} = %{version}-%{release}
 
