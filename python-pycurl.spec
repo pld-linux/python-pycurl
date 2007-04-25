@@ -2,12 +2,12 @@
 Summary:	Free and easy-to-use client-side URL transfer library
 Summary(pl.UTF-8):	Łatwa w użyciu biblioteka obsługi URL od strony klienta
 Name:		python-%{module}
-Version:	7.16.2
+Version:	7.16.2.1
 Release:	1
 License:	LGPL
 Group:		Libraries/Python
 Source0:	http://pycurl.sourceforge.net/download/%{module}-%{version}.tar.gz
-# Source0-md5:	52aef39a1b5e761d06f003b57c8b88d8
+# Source0-md5:	d01bfb29aa090db05b9704073fe38e7d
 URL:		http://pycurl.sourceforge.net/
 BuildRequires:	curl-devel >= 7.16.2
 BuildRequires:	python >= 1:2.5
