@@ -15,7 +15,7 @@ BuildRequires:	python-devel >= 1:2.5
 BuildRequires:	python-modules >= 1:2.5
 BuildRequires:	rpm-pythonprov
 %pyrequires_eq	python-libs
-Requires:	curl-libs >= 7.16.2
+Requires:	curl-libs >= 7.16.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
