@@ -62,6 +62,10 @@ Moduł zawierający przykładowe programy do modułu Pythona pycurl.
 %prep
 %setup -q -n %{module}-%{version}
 
+%build
+python setup.py build \
+	--debug
+
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{py_sitedir},%{_examplesdir}/%{name}-%{version}}
