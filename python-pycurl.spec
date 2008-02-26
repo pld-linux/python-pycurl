@@ -1,3 +1,5 @@
+# TODO
+# - as-needed fix: drop libssh2 dep from curl
 %define 	module	pycurl
 Summary:	Free and easy-to-use client-side URL transfer library
 Summary(pl.UTF-8):	Łatwa w użyciu biblioteka obsługi URL od strony klienta
