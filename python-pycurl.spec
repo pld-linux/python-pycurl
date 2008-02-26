@@ -2,21 +2,20 @@
 Summary:	Free and easy-to-use client-side URL transfer library
 Summary(pl.UTF-8):	Łatwa w użyciu biblioteka obsługi URL od strony klienta
 Name:		python-%{module}
-Version:	7.15.5.1
-Release:	2
+Version:	7.16.4
+Release:	1
 License:	LGPL
 Group:		Libraries/Python
 Source0:	http://pycurl.sourceforge.net/download/%{module}-%{version}.tar.gz
-# Source0-md5:	464cfbeba150d99d92a407c7c8b751de
-Patch0:		%{name}-curl.patch
+# Source0-md5:	b2ad729cf4ccc16f8d169d2511764eb6
 URL:		http://pycurl.sourceforge.net/
-BuildRequires:	curl-devel >= 7.15.5
+BuildRequires:	curl-devel >= 7.16.4
 BuildRequires:	python
 BuildRequires:	python-devel
 BuildRequires:	python-modules
 BuildRequires:	rpm-pythonprov
 %pyrequires_eq	python-libs
-Requires:	curl-libs >= 7.15.5
+Requires:	curl-libs >= 7.16.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -62,7 +61,10 @@ Moduł zawierający przykładowe programy do modułu Pythona pycurl.
 
 %prep
 %setup -q -n %{module}-%{version}
-%patch0 -p1
+
+%build
+python setup.py build \
+	--debug
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -75,6 +77,7 @@ python setup.py install \
 find $RPM_BUILD_ROOT%{py_sitedir} -name \*.py -exec rm {} \;
 
 cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+rm -rf $RPM_BUILD_ROOT%{_docdir}/pycurl
 
 %clean
 rm -rf $RPM_BUILD_ROOT
