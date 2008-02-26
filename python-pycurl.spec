@@ -1,6 +1,6 @@
 %define 	module	pycurl
 Summary:	Free and easy-to-use client-side URL transfer library
-Summary(pl):	£atwa w uøyciu biblioteka obs≥ugi URL od strony klienta
+Summary(pl.UTF-8):	≈Åatwa w u≈ºyciu biblioteka obs≈Çugi URL od strony klienta
 Name:		python-%{module}
 Version:	7.15.5.1
 Release:	2
@@ -27,38 +27,38 @@ certificates, HTTP POST, HTTP PUT, FTP uploading, kerberos, HTTP form
 based upload, proxies, cookies, user+password authentication, file
 transfer resume, HTTP proxy tunneling and more!
 
-%description -l pl
-pycurl jest interfejsem jÍzyka Python do biblioteki libcurl -
-wolnodostÍpnej i ≥atwej w uøyciu biblioteki operacji na URL-ach od
-strony klienta, obs≥uguj±cej FTP, FTPS, HTTP, HTTPS, GOPHER, TELNET,
-DICT, FILE i LDAP. libcurl obs≥uguje takøe certyfikaty HTTPS, HTTP
-POST, HTTP PUT, uploady FTP, kerberos, upload plikÛw przez HTTP oparty
+%description -l pl.UTF-8
+pycurl jest interfejsem jƒôzyka Python do biblioteki libcurl -
+wolnodostƒôpnej i ≈Çatwej w u≈ºyciu biblioteki operacji na URL-ach od
+strony klienta, obs≈ÇugujƒÖcej FTP, FTPS, HTTP, HTTPS, GOPHER, TELNET,
+DICT, FILE i LDAP. libcurl obs≈Çuguje tak≈ºe certyfikaty HTTPS, HTTP
+POST, HTTP PUT, uploady FTP, kerberos, upload plik√≥w przez HTTP oparty
 na formularzach, proxy, ciasteczka, uwierzytelnienie, wznawianie
-przesy≥ania plikÛw, tunelowanie proxy i wiele innych.
+przesy≈Çania plik√≥w, tunelowanie proxy i wiele innych.
 
 %package doc
 Summary:	Documentation for pycurl Python module
-Summary(pl):	Dokumentacja do modu≥u Pythona pycurl
+Summary(pl.UTF-8):	Dokumentacja do modu≈Çu Pythona pycurl
 Group:		Libraries/Python
 Requires:	%{name} = %{version}-%{release}
 
 %description doc
 This module contains documentation files for pycurl Python module.
 
-%description doc -l pl
-Modu≥ zawieraj±cy dokumentacjÍ dla modu≥u Pythona pucurl.
+%description doc -l pl.UTF-8
+Modu≈Ç zawierajƒÖcy dokumentacjƒô dla modu≈Çu Pythona pucurl.
 
 %package examples
 Summary:	Examples for pycurl Python module
-Summary(pl):	Przyk≥adowe programy do modu≥u Pythona pycurl
+Summary(pl.UTF-8):	Przyk≈Çadowe programy do modu≈Çu Pythona pycurl
 Group:		Libraries/Python
 Requires:	%{name} = %{version}-%{release}
 
 %description examples
 This module contains examples for pycurl Python module.
 
-%description examples -l pl
-Modu≥ zawieraj±cy przyk≥adowe programy do modu≥u Pythona pycurl.
+%description examples -l pl.UTF-8
+Modu≈Ç zawierajƒÖcy przyk≈Çadowe programy do modu≈Çu Pythona pycurl.
 
 %prep
 %setup -q -n %{module}-%{version}
