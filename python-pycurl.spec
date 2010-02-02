@@ -1,23 +1,26 @@
 # TODO
 # - as-needed fix: drop libssh2 dep from curl
+# - verify if curl-static is really needed ?
 %define 	module	pycurl
 Summary:	Free and easy-to-use client-side URL transfer library
 Summary(pl.UTF-8):	Łatwa w użyciu biblioteka obsługi URL od strony klienta
 Name:		python-%{module}
-Version:	7.16.4
-Release:	6
+Version:	7.19.0 
+# http://pycurl.sourceforge.net/download/pycurl-7.19.0.tar.gz
+Release:	1
 License:	LGPL
 Group:		Libraries/Python
 Source0:	http://pycurl.sourceforge.net/download/%{module}-%{version}.tar.gz
-# Source0-md5:	b2ad729cf4ccc16f8d169d2511764eb6
+# Source0-md5:	919d58fe37e69fe87ce4534d8b6a1c7b
 URL:		http://pycurl.sourceforge.net/
-BuildRequires:	curl-devel >= 7.16.4
+BuildRequires:	curl-devel >= 7.19
+BuildRequires:	curl-static >= 7.19
 BuildRequires:	python >= 1:2.5
 BuildRequires:	python-devel >= 1:2.5
 BuildRequires:	python-modules >= 1:2.5
 BuildRequires:	rpm-pythonprov
 %pyrequires_eq	python-libs
-Requires:	curl-libs >= 7.16.4
+Requires:	curl-libs >= 7.19
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
