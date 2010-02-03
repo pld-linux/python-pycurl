@@ -6,7 +6,7 @@
 # Yes, that should be handled by library versioning (which would then get
 # automatically reflected by rpm).
 # For now, we have to reflect that dependency.
-%define		libcurl_ver %(rpm -q --qf '%|E?{%{E}:}|%{V}' curl-devel || echo ERROR)
+%define		libcurl_ver %(rpm -q --qf '%|E?{%{E}:}|%{V}' curl-devel | sed 's/package .* is not installed/ERROR/' || echo ERROR)
 
 %define 	module	pycurl
 Summary:	Free and easy-to-use client-side URL transfer library
