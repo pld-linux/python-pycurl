@@ -1,26 +1,33 @@
 # TODO
 # - as-needed fix: drop libssh2 dep from curl
-# - verify if curl-static is really needed ?
+
+# During its initialization, PycURL checks that the actual libcurl version
+# is not lower than the one used when PycURL was built.
+# Yes, that should be handled by library versioning (which would then get
+# automatically reflected by rpm).
+# For now, we have to reflect that dependency.
+%define		libcurl_ver %(rpm -q --qf '%|E?{%{E}:}|%{V}' curl-devel || echo ERROR)
+
 %define 	module	pycurl
 Summary:	Free and easy-to-use client-side URL transfer library
 Summary(pl.UTF-8):	Łatwa w użyciu biblioteka obsługi URL od strony klienta
 Name:		python-%{module}
-Version:	7.19.0 
-# http://pycurl.sourceforge.net/download/pycurl-7.19.0.tar.gz
-Release:	1
+Version:	7.19.0
+Release:	2
 License:	LGPL
 Group:		Libraries/Python
 Source0:	http://pycurl.sourceforge.net/download/%{module}-%{version}.tar.gz
 # Source0-md5:	919d58fe37e69fe87ce4534d8b6a1c7b
+Patch0:		%{name}-no-static-libs.patch
 URL:		http://pycurl.sourceforge.net/
 BuildRequires:	curl-devel >= 7.19
-BuildRequires:	curl-static >= 7.19
 BuildRequires:	python >= 1:2.5
 BuildRequires:	python-devel >= 1:2.5
 BuildRequires:	python-modules >= 1:2.5
 BuildRequires:	rpm-pythonprov
+BuildRequires:	rpmbuild(macros) >= 1.219
 %pyrequires_eq	python-libs
-Requires:	curl-libs >= 7.19
+Requires:	curl-libs >= %{libcurl_ver}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -66,20 +73,21 @@ Moduł zawierający przykładowe programy do modułu Pythona pycurl.
 
 %prep
 %setup -q -n %{module}-%{version}
+%patch0 -p0
 
 %build
-python setup.py build \
+%{__python} setup.py build \
 	--debug
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{py_sitedir},%{_examplesdir}/%{name}-%{version}}
 
-python setup.py install \
+%{__python} setup.py install \
 	--root=$RPM_BUILD_ROOT \
 	--optimize=2
 
-find $RPM_BUILD_ROOT%{py_sitedir} -name \*.py -exec rm {} \;
+%py_postclean
 
 cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 rm -rf $RPM_BUILD_ROOT%{_docdir}/pycurl
