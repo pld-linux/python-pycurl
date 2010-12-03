@@ -14,7 +14,7 @@ Summary(pl.UTF-8):	Łatwa w użyciu biblioteka obsługi URL od strony klienta
 Name:		python-%{module}
 Version:	7.19.0
 Release:	7
-License:	LGPL
+License:	LGPL v2 or MIT-like
 Group:		Libraries/Python
 Source0:	http://pycurl.sourceforge.net/download/%{module}-%{version}.tar.gz
 # Source0-md5:	919d58fe37e69fe87ce4534d8b6a1c7b
@@ -90,22 +90,22 @@ install -d $RPM_BUILD_ROOT{%{py_sitedir},%{_examplesdir}/%{name}-%{version}}
 %py_postclean
 
 cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
-rm -rf $RPM_BUILD_ROOT%{_docdir}/pycurl
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/pycurl
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README ChangeLog TODO
-%attr(755,root,root) %{py_sitedir}/*.so
+%doc COPYING2 ChangeLog README TODO
+%attr(755,root,root) %{py_sitedir}/pycurl.so
 %dir %{py_sitedir}/curl
 %{py_sitedir}/curl/*.py[co]
 %{py_sitedir}/pycurl-*.egg-info
 
 %files doc
 %defattr(644,root,root,755)
-%doc doc/*
+%doc doc/*.html
 
 %files examples
 %defattr(644,root,root,755)
