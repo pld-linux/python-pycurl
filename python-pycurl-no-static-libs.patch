@@ -1,12 +1,13 @@
---- setup.py~	2008-04-22 17:00:45.000000000 +0300
-+++ setup.py	2008-07-03 21:53:36.000000000 +0300
-@@ -97,8 +97,7 @@
-         else:
-             extra_compile_args.append(e)
-     libs = split_quoted(
--        os.popen("'%s' --libs" % CURL_CONFIG).read()+\
--        os.popen("'%s' --static-libs" % CURL_CONFIG).read())
-+        os.popen("'%s' --libs" % CURL_CONFIG).read())
-     for e in libs:
-         if e[:2] == "-l":
-             libraries.append(e[2:])
+--- pycurl-7.19.0.2/setup.py.orig	2013-10-08 14:28:53.000000000 +0200
++++ pycurl-7.19.0.2/setup.py	2013-10-17 17:48:12.440601971 +0200
+@@ -101,8 +101,8 @@
+     # support one or the other of these curl-config options, so gracefully
+     # tolerate failure of either, but not both.
+     optbuf = ""
+-    for option in ["--libs", "--static-libs"]:
+-        p = subprocess.Popen("'%s' %s" % (CURL_CONFIG, option), shell=True,
++    for option in ["--libs", "--static --libs"]:
++        p = subprocess.Popen("'%s' %s libcurl" % ('pkg-config', option), shell=True,
+             stdout=subprocess.PIPE)
+         (stdout, stderr) = p.communicate()
+         if p.wait() == 0:

@@ -1,6 +1,3 @@
-# TODO
-# - as-needed fix: drop libssh2 dep from curl
-
 # During its initialization, PycURL checks that the actual libcurl version
 # is not lower than the one used when PycURL was built.
 # Yes, that should be handled by library versioning (which would then get
@@ -12,15 +9,16 @@
 Summary:	Free and easy-to-use client-side URL transfer library
 Summary(pl.UTF-8):	Łatwa w użyciu biblioteka obsługi URL od strony klienta
 Name:		python-%{module}
-Version:	7.19.0
-Release:	8
+Version:	7.19.0.2
+Release:	1
 License:	LGPL v2 or MIT-like
 Group:		Libraries/Python
 Source0:	http://pycurl.sourceforge.net/download/%{module}-%{version}.tar.gz
-# Source0-md5:	919d58fe37e69fe87ce4534d8b6a1c7b
+# Source0-md5:	518be33976dbc6838e42495ada64b43f
 Patch0:		%{name}-no-static-libs.patch
 URL:		http://pycurl.sourceforge.net/
 BuildRequires:	curl-devel >= 7.19
+BuildRequires:	pkgconfig >= 1:0.20
 BuildRequires:	python >= 1:2.5
 BuildRequires:	python-devel >= 1:2.5
 BuildRequires:	python-modules >= 1:2.5
@@ -73,9 +71,12 @@ Moduł zawierający przykładowe programy do modułu Pythona pycurl.
 
 %prep
 %setup -q -n %{module}-%{version}
-%patch0 -p0
+%patch0 -p1
 
 %build
+CC="%{__cc}" \
+CFLAGS="%{rpmcflags}" \
+LDFLAGS="%{rpmldflags}" \
 %{__python} setup.py build \
 	--debug
 
@@ -97,7 +98,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc COPYING2 ChangeLog README TODO
+%doc COPYING2 ChangeLog README.rst TODO
 %attr(755,root,root) %{py_sitedir}/pycurl.so
 %dir %{py_sitedir}/curl
 %{py_sitedir}/curl/*.py[co]
