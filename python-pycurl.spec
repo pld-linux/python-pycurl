@@ -9,12 +9,12 @@
 Summary:	Free and easy-to-use client-side URL transfer library
 Summary(pl.UTF-8):	Łatwa w użyciu biblioteka obsługi URL od strony klienta
 Name:		python-%{module}
-Version:	7.19.0.2
+Version:	7.19.3.1
 Release:	1
 License:	LGPL v2 or MIT-like
 Group:		Libraries/Python
 Source0:	http://pycurl.sourceforge.net/download/%{module}-%{version}.tar.gz
-# Source0-md5:	518be33976dbc6838e42495ada64b43f
+# Source0-md5:	6df8fa7fe8b680d93248da1f8d4fcd12
 Patch0:		%{name}-no-static-libs.patch
 URL:		http://pycurl.sourceforge.net/
 BuildRequires:	curl-devel >= 7.19
@@ -98,7 +98,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc COPYING2 ChangeLog README.rst TODO
+%doc AUTHORS COPYING-MIT ChangeLog README.rst RELEASE-NOTES.rst
 %attr(755,root,root) %{py_sitedir}/pycurl.so
 %dir %{py_sitedir}/curl
 %{py_sitedir}/curl/*.py[co]
@@ -106,7 +106,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files doc
 %defattr(644,root,root,755)
-%doc doc/*.html
+# TODO: use rst2html to convert?
+#%doc doc/*.html
+%doc doc/*.rst
 
 %files examples
 %defattr(644,root,root,755)

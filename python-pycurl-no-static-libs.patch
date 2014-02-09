@@ -1,13 +1,13 @@
---- pycurl-7.19.0.2/setup.py.orig	2013-10-08 14:28:53.000000000 +0200
-+++ pycurl-7.19.0.2/setup.py	2013-10-17 17:48:12.440601971 +0200
-@@ -101,8 +101,8 @@
-     # support one or the other of these curl-config options, so gracefully
-     # tolerate failure of either, but not both.
-     optbuf = ""
--    for option in ["--libs", "--static-libs"]:
--        p = subprocess.Popen("'%s' %s" % (CURL_CONFIG, option), shell=True,
-+    for option in ["--libs", "--static --libs"]:
-+        p = subprocess.Popen("'%s' %s libcurl" % ('pkg-config', option), shell=True,
-             stdout=subprocess.PIPE)
-         (stdout, stderr) = p.communicate()
-         if p.wait() == 0:
+--- pycurl-7.19.3.1/setup.py.orig	2014-02-08 22:45:35.815908728 +0100
++++ pycurl-7.19.3.1/setup.py	2014-02-09 07:30:52.621252762 +0100
+@@ -147,8 +147,8 @@
+         optbuf = ''
+         sslhintbuf = ''
+         errtext = ''
+-        for option in ["--libs", "--static-libs"]:
+-            p = subprocess.Popen((CURL_CONFIG, option),
++        for option in ["--libs", "--static --libs"]:
++            p = subprocess.Popen("'%s' %s libcurl" % ('pkg-config', option), shell=True,
+                 stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+             stdout, stderr = p.communicate()
+             if p.wait() == 0:
