@@ -1,3 +1,7 @@
+# Conditional build:
+%bcond_without  python2 # Python 2.x module
+%bcond_without  python3 # Python 3.x module
+
 # During its initialization, PycURL checks that the actual libcurl version
 # is not lower than the one used when PycURL was built.
 # Yes, that should be handled by library versioning (which would then get
@@ -10,7 +14,7 @@ Summary:	Free and easy-to-use client-side URL transfer library
 Summary(pl.UTF-8):	Łatwa w użyciu biblioteka obsługi URL od strony klienta
 Name:		python-%{module}
 Version:	7.19.5.1
-Release:	1
+Release:	2
 License:	LGPL v2 or MIT-like
 Group:		Libraries/Python
 Source0:	http://pycurl.sourceforge.net/download/%{module}-%{version}.tar.gz
@@ -19,9 +23,16 @@ Patch0:		%{name}-no-static-libs.patch
 URL:		http://pycurl.sourceforge.net/
 BuildRequires:	curl-devel >= 7.19
 BuildRequires:	pkgconfig >= 1:0.20
+%if %{with python2}
 BuildRequires:	python >= 1:2.5
 BuildRequires:	python-devel >= 1:2.5
 BuildRequires:	python-modules >= 1:2.5
+%endif
+%if %{with python3}
+BuildRequires:	python3
+BuildRequires:	python3-devel
+BuildRequires:	python3-modules
+%endif
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.219
 %pyrequires_eq	python-libs
@@ -37,6 +48,30 @@ based upload, proxies, cookies, user+password authentication, file
 transfer resume, HTTP proxy tunneling and more!
 
 %description -l pl.UTF-8
+pycurl jest interfejsem języka Python do biblioteki libcurl -
+wolnodostępnej i łatwej w użyciu biblioteki operacji na URL-ach od
+strony klienta, obsługującej FTP, FTPS, HTTP, HTTPS, GOPHER, TELNET,
+DICT, FILE i LDAP. libcurl obsługuje także certyfikaty HTTPS, HTTP
+POST, HTTP PUT, uploady FTP, kerberos, upload plików przez HTTP oparty
+na formularzach, proxy, ciasteczka, uwierzytelnienie, wznawianie
+przesyłania plików, tunelowanie proxy i wiele innych.
+
+%package -n python3-pycurl
+Summary:	Free and easy-to-use client-side URL transfer library
+Summary(pl.UTF-8):	Łatwa w użyciu biblioteka obsługi URL od strony klienta
+Group:		Libraries/Python
+%pyrequires_eq	python3-libs
+Requires:	curl-libs >= %{libcurl_ver}
+
+%description -n python3-pycurl
+pycurl is Python interface to curl library - free and easy-to-use
+client-side URL transfer library, supporting FTP, FTPS, HTTP, HTTPS,
+GOPHER, TELNET, DICT, FILE and LDAP. libcurl supports HTTPS
+certificates, HTTP POST, HTTP PUT, FTP uploading, kerberos, HTTP form
+based upload, proxies, cookies, user+password authentication, file
+transfer resume, HTTP proxy tunneling and more!
+
+%description -n python3-pycurl -l pl.UTF-8
 pycurl jest interfejsem języka Python do biblioteki libcurl -
 wolnodostępnej i łatwej w użyciu biblioteki operacji na URL-ach od
 strony klienta, obsługującej FTP, FTPS, HTTP, HTTPS, GOPHER, TELNET,
@@ -74,21 +109,43 @@ Moduł zawierający przykładowe programy do modułu Pythona pycurl.
 %patch0 -p1
 
 %build
+%if %{with python2}
 CC="%{__cc}" \
 CFLAGS="%{rpmcflags}" \
 LDFLAGS="%{rpmldflags}" \
-%{__python} setup.py build \
+%{__python} setup.py build --build-base build-2 \
 	--debug
+%endif
+
+%if %{with python3}
+CC="%{__cc}" \
+CFLAGS="%{rpmcflags}" \
+LDFLAGS="%{rpmldflags}" \
+%{__python3} setup.py build --build-base build-3 \
+	--debug
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{py_sitedir},%{_examplesdir}/%{name}-%{version}}
 
-%{__python} setup.py install \
+%if %{with python2}
+%{__python} setup.py \
+	build --build-base build-2 \
+	install --skip-build \
 	--root=$RPM_BUILD_ROOT \
 	--optimize=2
 
 %py_postclean
+%endif
+
+%if %{with python3}
+%{__python3} setup.py \
+	build --build-base build-3 \
+	install --skip-build \
+	--root=$RPM_BUILD_ROOT \
+	--optimize=2
+%endif
 
 cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 %{__rm} -r $RPM_BUILD_ROOT%{_docdir}/pycurl
@@ -96,6 +153,7 @@ cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%if %{with python2}
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS COPYING-MIT ChangeLog README.rst RELEASE-NOTES.rst
@@ -103,6 +161,17 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{py_sitedir}/curl
 %{py_sitedir}/curl/*.py[co]
 %{py_sitedir}/pycurl-*.egg-info
+%endif
+
+%if %{with python3}
+%files -n python3-pycurl
+%defattr(644,root,root,755)
+%attr(755,root,root) %{py3_sitedir}/pycurl*.so
+%dir %{py3_sitedir}/curl
+%{py3_sitedir}/curl/__pycache__
+%{py3_sitedir}/curl/*.py
+%{py3_sitedir}/pycurl-*.egg-info
+%endif
 
 %files doc
 %defattr(644,root,root,755)
