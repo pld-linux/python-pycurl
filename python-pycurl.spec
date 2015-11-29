@@ -34,7 +34,7 @@ BuildRequires:	python3-devel
 BuildRequires:	python3-modules
 %endif
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.219
+BuildRequires:	rpmbuild(macros) >= 1.710
 %pyrequires_eq	python-libs
 Requires:	curl-libs >= %{libcurl_ver}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
