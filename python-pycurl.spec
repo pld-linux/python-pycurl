@@ -1,3 +1,4 @@
+#
 # Conditional build:
 %bcond_without  python2 # Python 2.x module
 %bcond_without  python3 # Python 3.x module
@@ -13,12 +14,12 @@
 Summary:	Free and easy-to-use client-side URL transfer library
 Summary(pl.UTF-8):	Łatwa w użyciu biblioteka obsługi URL od strony klienta
 Name:		python-%{module}
-Version:	7.19.5.1
-Release:	6
+Version:	7.21.5
+Release:	1
 License:	LGPL v2 or MIT-like
 Group:		Libraries/Python
 Source0:	http://pycurl.sourceforge.net/download/%{module}-%{version}.tar.gz
-# Source0-md5:	f44cd54256d7a643ab7b16e3f409b26b
+# Source0-md5:	bca7bf47320082588db544ced2ba8717
 Patch0:		%{name}-no-static-libs.patch
 URL:		http://pycurl.sourceforge.net/
 BuildRequires:	curl-devel >= 7.19
@@ -29,12 +30,12 @@ BuildRequires:	python-devel >= 1:2.5
 BuildRequires:	python-modules >= 1:2.5
 %endif
 %if %{with python3}
-BuildRequires:	python3
-BuildRequires:	python3-devel
-BuildRequires:	python3-modules
+BuildRequires:	python3 >= 1:3.2
+BuildRequires:	python3-devel >= 1:3.2
+BuildRequires:	python3-modules >= 1:3.2
 %endif
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.710
+BuildRequires:	rpmbuild(macros) >= 1.714
 %pyrequires_eq	python-libs
 Requires:	curl-libs >= %{libcurl_ver}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -110,17 +111,11 @@ Moduł zawierający przykładowe programy do modułu Pythona pycurl.
 
 %build
 %if %{with python2}
-CC="%{__cc}" \
-CFLAGS="%{rpmcflags}" \
-LDFLAGS="%{rpmldflags}" \
 %py_build \
 	--debug
 %endif
 
 %if %{with python3}
-CC="%{__cc}" \
-CFLAGS="%{rpmcflags}" \
-LDFLAGS="%{rpmldflags}" \
 %py3_build \
 	--debug
 %endif
