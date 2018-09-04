@@ -14,25 +14,25 @@
 Summary:	Free and easy-to-use client-side URL transfer library
 Summary(pl.UTF-8):	Łatwa w użyciu biblioteka obsługi URL od strony klienta
 Name:		python-%{module}
-Version:	7.21.5
-Release:	3
+Version:	7.43.0.2
+Release:	1
 License:	LGPL v2 or MIT-like
 Group:		Libraries/Python
-Source0:	http://pycurl.sourceforge.net/download/%{module}-%{version}.tar.gz
-# Source0-md5:	bca7bf47320082588db544ced2ba8717
+Source0:	https://dl.bintray.com/pycurl/pycurl/%{module}-%{version}.tar.gz
+# Source0-md5:	89311d1b3bb42a5dbb88609fdbdee6de
 Patch0:		%{name}-no-static-libs.patch
-URL:		http://pycurl.sourceforge.net/
+URL:		http://pycurl.io/
 BuildRequires:	curl-devel >= 7.19
 BuildRequires:	pkgconfig >= 1:0.20
 %if %{with python2}
-BuildRequires:	python >= 1:2.5
-BuildRequires:	python-devel >= 1:2.5
-BuildRequires:	python-modules >= 1:2.5
+BuildRequires:	python >= 1:2.7
+BuildRequires:	python-devel >= 1:2.7
+BuildRequires:	python-modules >= 1:2.7
 %endif
 %if %{with python3}
-BuildRequires:	python3 >= 1:3.2
-BuildRequires:	python3-devel >= 1:3.2
-BuildRequires:	python3-modules >= 1:3.2
+BuildRequires:	python3 >= 1:3.4
+BuildRequires:	python3-devel >= 1:3.4
+BuildRequires:	python3-modules >= 1:3.4
 %endif
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
@@ -153,6 +153,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python3}
 %files -n python3-pycurl
 %defattr(644,root,root,755)
+%doc AUTHORS COPYING-MIT ChangeLog README.rst RELEASE-NOTES.rst
 %attr(755,root,root) %{py3_sitedir}/pycurl*.so
 %dir %{py3_sitedir}/curl
 %{py3_sitedir}/curl/__pycache__
