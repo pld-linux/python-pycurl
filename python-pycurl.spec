@@ -14,12 +14,12 @@
 Summary:	Free and easy-to-use client-side URL transfer library
 Summary(pl.UTF-8):	Łatwa w użyciu biblioteka obsługi URL od strony klienta
 Name:		python-%{module}
-Version:	7.43.0.2
-Release:	9
+Version:	7.45.2
+Release:	1
 License:	LGPL v2 or MIT-like
 Group:		Libraries/Python
-Source0:	https://dl.bintray.com/pycurl/pycurl/%{module}-%{version}.tar.gz
-# Source0-md5:	89311d1b3bb42a5dbb88609fdbdee6de
+Source0:	https://files.pythonhosted.org/packages/source/p/pycurl/%{module}-%{version}.tar.gz
+# Source0-md5:	a11c9008ea0cd2498bcb827f5f60e052
 Patch0:		%{name}-no-static-libs.patch
 URL:		http://pycurl.io/
 BuildRequires:	curl-devel >= 7.19
@@ -30,14 +30,14 @@ BuildRequires:	python-devel >= 1:2.7
 BuildRequires:	python-modules >= 1:2.7
 %endif
 %if %{with python3}
-BuildRequires:	python3 >= 1:3.4
+BuildRequires:	python3 >= 1:3.5
 BuildRequires:	python3-devel >= 1:3.4
 BuildRequires:	python3-modules >= 1:3.4
 %endif
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
-%pyrequires_eq	python-libs
 Requires:	curl-libs >= %{libcurl_ver}
+Requires:	python-libs >= 1:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -61,7 +61,7 @@ przesyłania plików, tunelowanie proxy i wiele innych.
 Summary:	Free and easy-to-use client-side URL transfer library
 Summary(pl.UTF-8):	Łatwa w użyciu biblioteka obsługi URL od strony klienta
 Group:		Libraries/Python
-%pyrequires_eq	python3-libs
+Requires:	python3-libs >= 1:3.5
 Requires:	curl-libs >= %{libcurl_ver}
 
 %description -n python3-pycurl
