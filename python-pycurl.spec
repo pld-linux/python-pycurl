@@ -3,19 +3,12 @@
 %bcond_without  python2 # Python 2.x module
 %bcond_without  python3 # Python 3.x module
 
-# During its initialization, PycURL checks that the actual libcurl version
-# is not lower than the one used when PycURL was built.
-# Yes, that should be handled by library versioning (which would then get
-# automatically reflected by rpm).
-# For now, we have to reflect that dependency.
-%define		libcurl_ver %(rpm -q --qf '%|E?{%{E}:}|%{V}' curl-devel | sed 's/package .* is not installed/ERROR/' || echo ERROR)
-
-%define 	module	pycurl
+%define		module	pycurl
 Summary:	Free and easy-to-use client-side URL transfer library
 Summary(pl.UTF-8):	Łatwa w użyciu biblioteka obsługi URL od strony klienta
 Name:		python-%{module}
 Version:	7.45.2
-Release:	4
+Release:	5
 License:	LGPL v2 or MIT-like
 Group:		Libraries/Python
 Source0:	https://files.pythonhosted.org/packages/source/p/pycurl/%{module}-%{version}.tar.gz
@@ -36,7 +29,12 @@ BuildRequires:	python3-modules >= 1:3.4
 %endif
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
-Requires:	curl-libs >= %{libcurl_ver}
+# During its initialization, PycURL checks that the actual libcurl version
+# is not lower than the one used when PycURL was built.
+# Yes, that should be handled by library versioning (which would then get
+# automatically reflected by rpm).
+# For now, we have to reflect that dependency.
+%requires_ge curl-libs
 Requires:	python-libs >= 1:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -62,7 +60,7 @@ Summary:	Free and easy-to-use client-side URL transfer library
 Summary(pl.UTF-8):	Łatwa w użyciu biblioteka obsługi URL od strony klienta
 Group:		Libraries/Python
 Requires:	python3-libs >= 1:3.5
-Requires:	curl-libs >= %{libcurl_ver}
+%requires_ge curl-libs
 
 %description -n python3-pycurl
 pycurl is Python interface to curl library - free and easy-to-use
